@@ -4,10 +4,10 @@ const GlobalStyle = createGlobalStyle`
   * {
     scrollbar-width: none;
     scroll-behavior: smooth;
-
+/* 
     &::-webkit-scrollbar {
       display: none;
-    }
+    } */
   }
 
   body {

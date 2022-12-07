@@ -36,7 +36,7 @@ export const SelectionArea = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
 `;
 
 export const SubTitle = styled.h6`
