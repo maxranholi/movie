@@ -14,7 +14,7 @@ export const Containerheader = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-left: 6rem;
+  margin-left: 5rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
