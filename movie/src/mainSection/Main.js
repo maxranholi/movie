@@ -12,13 +12,11 @@ import React, { useState, useEffect } from "react";
 import { Imagepath, API_key } from "../constants/Url";
 import { useNavigate } from "react-router-dom";
 import { detailsPage } from "../routes/Coordinator";
-import Header from "../header/Header";
+import Header from "../components/header/Header";
 import {
   ContainerHero,
-  SelectionArea,
   Title,
 } from "../heroSection.js/HeroSectionStyled";
-import { SubTitle } from "../details/DetailsStyled";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
@@ -124,8 +122,7 @@ const Main = () => {
         <h6>FILTRE POR:</h6>
         <Buttons>
         {genreMap}
-        </Buttons>
-        
+        </Buttons>       
       </ContainerHero>
       <ContainerMain>
         <Containercard>{moviesMap}</Containercard>

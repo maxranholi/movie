@@ -1,7 +1,4 @@
-import GlobalStyle from "./Globalstyled";
-import Header from "../src/header/Header";
-import HeroSection from "./heroSection.js/Herosection";
-import Main from "./mainSection/Main";
+import GlobalStyle from "./constants/Globalstyled";
 import Router from "./routes/Routes";
 
 function App() {
