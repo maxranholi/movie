@@ -1,4 +1,7 @@
 import {
+  Button,
+  ButtonClicked,
+  Buttons,
   CardMovie,
   Containercard,
   ContainerMain,
@@ -10,11 +13,18 @@ import { Imagepath, API_key } from "../constants/Url";
 import { useNavigate } from "react-router-dom";
 import { detailsPage } from "../routes/Coordinator";
 import Header from "../header/Header";
-import HeroSection from "../heroSection.js/Herosection";
+import {
+  ContainerHero,
+  SelectionArea,
+  Title,
+} from "../heroSection.js/HeroSectionStyled";
+import { SubTitle } from "../details/DetailsStyled";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [genre, setGenre] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const navigate = useNavigate();
 
@@ -35,9 +45,35 @@ const Main = () => {
       )
       .then((res) => {
         setMovies(res.data.results);
-        console.log(res.data);
       });
   }, [page]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_key}&language=en-US`
+      )
+      .then((res) => {
+        setGenre(res.data.genres);
+      });
+  }, []);
+
+  const genreMap = genre.map((genre) => {
+    if (genre.id === filter) {
+      return (
+        <ButtonClicked key={genre.id}>
+          <div onClick={() => setFilter(genre.id)}>{genre.name}</div>
+          <p onClick={() => setFilter("")}>x</p>
+        </ButtonClicked>
+      );
+    } else {
+      return (
+        <Button key={genre.id}>
+          <p onClick={() => setFilter(genre.id)}>{genre.name}</p>
+        </Button>
+      );
+    }
+  });
 
   const moviesMap = movies.map((movie) => {
     const americanDate = movie.release_date;
@@ -46,34 +82,63 @@ const Main = () => {
       .reverse()
       .join()
       .replace(/,/g, " ");
-    return (
-      <CardMovie key={movie.id}>
-        <img
-          src={`${Imagepath}${movie.poster_path}`}
-          alt="pôster do respectivo filme"
-          onClick={() => goToDetails(movie.id)}
-        />
-        <h2>{movie.title}</h2>
-        <h4>{brasilianDate}</h4>
-      </CardMovie>
-    );
+    if (filter === "") {
+      return (
+        <CardMovie key={movie.id}>
+          <img
+            src={`${Imagepath}${movie.poster_path}`}
+            alt="pôster do respectivo filme"
+            onClick={() => goToDetails(movie.id)}
+          />
+          <p>{"Ver Detalhes"}</p>
+          <h2>{movie.title}</h2>         
+          <h4>{brasilianDate}</h4>
+        </CardMovie>
+      );
+    } else if (
+      filter === movie.genre_ids[0] ||
+      filter === movie.genre_ids[1] ||
+      filter === movie.genre_ids[2] ||
+      filter === movie.genre_ids[3]
+    ) {
+      return (
+        <CardMovie key={movie.id}><p>detalhes</p>
+          <img
+            src={`${Imagepath}${movie.poster_path}`}
+            alt="pôster do respectivo filme"
+            onClick={() => goToDetails(movie.id)}
+          />
+          <h2>{movie.title}</h2>
+          <h4>{brasilianDate}</h4>        
+        </CardMovie>
+      );
+    }
   });
   return (
     <>
-    <Header />
-    <HeroSection />
-    <ContainerMain>
-      <Containercard>{moviesMap}</Containercard>
-      <Selection>
-        <p onClick={() => scrollTop(1)}>1</p>
-        <p onClick={() => scrollTop(2)}>2</p>
-        <p onClick={() => scrollTop(3)}>3</p>
-        <p onClick={() => scrollTop(4)}>4</p>
-        <p onClick={() => scrollTop(5)}>5</p>
-        <p onClick={() => scrollTop(page + 1)}> &gt; </p>
-        <p onClick={() => scrollTop(500)}>Última</p>
-      </Selection>
-    </ContainerMain>
+      <Header />
+      <ContainerHero>
+        <Title>
+          Milhões de filmes, séries e pessoas para descobrir. Explore já.        
+        </Title>
+        <h6>FILTRE POR:</h6>
+        <Buttons>
+        {genreMap}
+        </Buttons>
+        
+      </ContainerHero>
+      <ContainerMain>
+        <Containercard>{moviesMap}</Containercard>
+        <Selection>
+          <p onClick={() => scrollTop(1)}>1</p>
+          <p onClick={() => scrollTop(2)}>2</p>
+          <p onClick={() => scrollTop(3)}>3</p>
+          <p onClick={() => scrollTop(4)}>4</p>
+          <p onClick={() => scrollTop(5)}>5</p>
+          <p onClick={() => scrollTop(page + 1)}> &gt; </p>
+          <p onClick={() => scrollTop(500)}>Última</p>
+        </Selection>
+      </ContainerMain>
     </>
   );
 };
