@@ -17,7 +17,12 @@ export const Containercard = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
-`;
+  margin-top: 5rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`
 
 export const CardMovie = styled.div`
   display: flex;
@@ -28,7 +33,10 @@ export const CardMovie = styled.div`
   font-size: 32px;
   align-items: start;
   color: transparent;
-  margin-top: 5rem;
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
 
   p {
     display: flex;
@@ -51,6 +59,12 @@ export const CardMovie = styled.div`
       -ms-transform: scale(1.2);
       transform: scale(1.2);
     }
+    @media (max-width: 768px) {
+    width: 100%;
+    height: 220px;
+  }
+
+    
   }
 
   h2 {
@@ -66,7 +80,7 @@ export const CardMovie = styled.div`
     align-items: center;
     justify-content: start;
     color: #000000;
-    margin-top: 1rem;
+    margin-top: -0.5rem;
   }
 
   h4 {

@@ -22,6 +22,7 @@ export const ContainerHero = styled.div`
     justify-content: center;
     align-items: center;
     height: 100%;
+    padding-bottom: 3rem;
   }
 `;
 export const ImgPoster = styled.img`
@@ -34,6 +35,11 @@ export const ImgPoster = styled.img`
   margin-top: 2rem;
 
   @media (max-width: 768px) {
+    width: 186px;
+    height: 279px;
+    left: 86px;
+    top: 90px;
+    border-radius: 8px;
     display: flex;
     margin-left: 0rem;
     justify-content: center;
@@ -49,7 +55,7 @@ export const MovieInformation = styled.div`
   margin-top: 2rem;
   gap: 1rem;
   @media (max-width: 768px) {
-    width: 86%;
+    width: 92%;
   }
 `;
 export const TitleMovie = styled.div`
@@ -123,7 +129,16 @@ export const Genres = styled.div`
   line-height: 24px;
   align-items: center;
   color: #ffffff;
-  gap: 0.2rem;
+  gap: 0.8rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4;
+    line-height: 0;
+    height: 100%;
+    margin-top: 1rem;
+  }
 `;
 
 export const Cast = styled.div`
@@ -215,6 +230,7 @@ export const Recomendations = styled.div`
   margin-bottom: 32px;
   gap: 32px;
 
+
   &::-webkit-scrollbar {
     background-color: #dddddd;
     height: 0.8rem;
@@ -231,7 +247,46 @@ export const RecomendationsList = styled.div`
   display: flex;
   gap: 1rem;
   padding-bottom: 1rem;
-  margin-top: -6.6rem;
+
+
+  p {
+    display: flex;
+  }
+
+  &:hover {
+    color: #000000;
+  }
+
+  
+  h2 {
+    width: 11rem;
+    height: 24px;
+    left: 112px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: #000000;
+    margin-top: 1rem;
+  }
+
+  h4 {
+    width: 11rem;
+    height: 24px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #646464;
+  }
+
 `;
 
 export const Video = styled.div`
@@ -254,34 +309,48 @@ export const Video = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 60%;
+    height: 40%;
     width: 84%;
-    margin-left: 2.8rem;
+    margin-left: 0;
+    align-self: center;
   }
 `;
 
 export const Progress = styled.div`
-display: flex;
-flex-direction: row;
-gap: 1rem;
+  display: flex;
+  gap: 1rem;
 
-p{
-  width: 102px;
-height: 40px;
-left: 601px;
-top: 225px;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 20px;
-display: flex;
-align-items: center;
-color: #FFFFFF
-}
+  p {
+    width: 102px;
+    height: 40px;
+    left: 601px;
+    top: 225px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
 
-`
+  @media (max-width: 768px) {
+    align-items: center;
+    margin-top: 1rem;
+  }
+`;
 export const ProgressBar = styled.div`
-height: 20%;
-width: 10%;
-`
+  height: 20%;
+  width: 10%;
+
+  @media (max-width: 768px) {
+    height: 30%;
+    width: 16%;
+  }
+`;
+
+export const opts = {
+  height: "480vh",
+  width: "100%",
+};

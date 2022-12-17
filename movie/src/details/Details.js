@@ -15,17 +15,20 @@ import {
   Genres,
   ProgressBar,
   Progress,
+  opts,
 } from "./DetailsStyled";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_key } from "../constants/Url";
-import Header from "../header/Header";
+import Header from "../components/header/Header";
 import { Imagepath } from "../constants/Url";
 import { CardMovie } from "../mainSection/Mainstyled";
 import Youtube from "react-youtube";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useNavigate } from "react-router";
+import { detailsPage } from "../routes/Coordinator";
 
 const Details = () => {
   const [movie, setMovie] = useState([]);
@@ -35,6 +38,13 @@ const Details = () => {
   const { id } = useParams();
   const [recomendations, setRecomendations] = useState([]);
   const [crew, setCrew] = useState([]);
+
+  const navigate = useNavigate();
+
+  const goToDetails = (id) => {
+    detailsPage(navigate, id);
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
     axios
@@ -47,15 +57,16 @@ const Details = () => {
       });
   }, [id]);
 
-  useEffect(() =>  {
+  useEffect(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_key}&language=en-US`
       )
       .then((res) => {
         setCast(res.data.cast);
-        setCrew(res.data.crew)
-
+        setCrew(res.data.crew);
+        console.log(res.data.crew)
+        
       });
   }, [id]);
 
@@ -101,10 +112,11 @@ const Details = () => {
       .replace(/,/g, " ");
     return (
       <CardMovie key={recomendation.id}>
+        <p>Ver Detalhes</p>
         <img
           src={`${Imagepath}${recomendation.poster_path}`}
           alt="pôster do respectivo filme"
-          // onClick={() => goToDetails(movie.id)}
+          onClick={() => goToDetails(movie.id)}
         />
         <h2>{recomendation.title}</h2>
         <h4>{brasilianDate}</h4>
@@ -112,6 +124,11 @@ const Details = () => {
     );
   });
 
+  const gendersMap = genres.map((genre) => {
+    return <p key={genre.id}>{`${genre.name},`}</p>;
+  });
+
+  //========================================================= Variável para pegar o id do trailer
   const fetchTrailer =
     trailer &&
     trailer.filter((trailer) => {
@@ -124,39 +141,50 @@ const Details = () => {
     trailerKey = trailerKey[0].key;
   }
 
-  // const fetchCrew =
-  //   crew &&
-  //   crew.filter((crew) => {
-  //     return crew["known_for_department"] === "Sound" ? (
-  //       <p>{crew.name}</p>
-  //     ) : undefined;
-  //   });
 
-  // console.log(fetchCrew);
+  //==============================================================================================
 
-  const opts = {
-    height: "480vh",
-    width: "100%",
-  };
+  //========================================================= Variáveis pegar equipe do filme
+  const fetchCrew =
+    crew &&
+    crew.filter((crew) => {
+      return crew["known_for_department"] === "Directing" ?  <p>{crew.name}</p> : undefined;
+    });
 
-  const gendersMap = genres.map((genre) => {
-    return <p key={genre.id}>{`${genre.name},`}</p>;
-  });
+    let director = fetchCrew
 
+    if(fetchCrew.length > 0) {
+      director = director[0].name
+    }
+
+    console.log(director)
+
+  // const crewMap = crew.map((crew) => {
+  //   return <p>{crew.name}</p>;
+  // });
+
+ 
+
+  //==============================================================================================
+
+
+  //====================================================== Variáveis para formatar a hora do filme
   const runtimeToFixed = (movie.runtime / 60).toFixed(2);
   const runTimeHour = runtimeToFixed.slice(0, 1);
   const runTimeMinutes = runtimeToFixed.slice(2, 4);
+  //================================================================================================
 
+  //====================================================== Variáveis para formatar a data e avaliação do filme
   let releaseYear = movie.release_date;
   let releaseDate = movie.release_date;
-  let vote = movie.vote_average;
+  let score = movie.vote_average;
 
-  if (releaseYear && releaseDate && vote) {
+  if (releaseYear && releaseDate && score) {
     releaseYear = releaseYear.slice(0, 4);
     releaseDate = releaseDate.replace(/-/g, "/");
-    vote = vote.toFixed(1).replace(".", "");
+    score = score.toFixed(1).replace(".", "");
   }
-
+  //================================================================================================
   return (
     <Container>
       <Header />
@@ -164,17 +192,17 @@ const Details = () => {
         <ImgPoster src={`${Imagepath}${movie.poster_path}`}></ImgPoster>
         <MovieInformation>
           <TitleMovie>
-            {movie.title} ({releaseYear})
+            {movie.title} ({releaseYear}) 
           </TitleMovie>
           <Genres>
-            {releaseDate} . {gendersMap} . {runTimeHour}h {runTimeMinutes}m
+            {releaseDate} {gendersMap} {runTimeHour}h {runTimeMinutes}m
           </Genres>
           <Progress>
             <ProgressBar>
               <CircularProgressbar
                 style={{ width: 10, height: 10 }}
-                value={vote}
-                text={`${vote}%`}
+                value={score}
+                text={`${score}%`}
                 strokeWidth={8}
                 styles={buildStyles({
                   textColor: "#14FF00",
@@ -191,6 +219,7 @@ const Details = () => {
             <h6>Sinopse</h6>
             {movie.overview}
           </Overview>
+          Diretor: {director}
         </MovieInformation>
       </ContainerHero>
       <Cast>
