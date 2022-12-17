@@ -8,7 +8,16 @@ export const ContainerHero = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-size: 0;
+
+  h6 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const Title = styled.h2`
@@ -21,7 +30,7 @@ export const Title = styled.h2`
   line-height: 3.5rem;
   text-align: center;
   letter-spacing: -0.005em;
-  margin-top: 2rem;
+  margin-top: 5rem;
 
   @media (max-width: 768px) {
     width: 90%;
@@ -57,43 +66,5 @@ export const SubTitle = styled.h6`
     text-align: left;
   }
 `;
-export const Buttons = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 80%;
-  gap: 0.75rem;
-  margin-bottom: 3rem;
 
-  @media (max-width: 768px) {
-    justify-content: start;
-    align-items: flex-start;
-    width: 100%;
-  }
 
-  button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    padding: 0px 0px;
-    height: 2.5rem;
-    background: #ffffff;
-    border-radius: 4px;
-    border: none;
-
-    p {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 24px;
-      font-family: "Roboto";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 24px;
-      color: #323232;
-      margin: 1rem;
-    }
-  }
-`;

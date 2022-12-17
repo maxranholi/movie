@@ -11,47 +11,45 @@ export const ContainerMain = styled.div`
 `;
 
 export const Containercard = styled.div`
-  height: 100%;
-  width: 100%;
+  width: 92%;
   background-color: #e5e5e5;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-    padding: 0;
-    padding-left: 0.5rem;
-  }
+  gap: 32px;
 `;
 
 export const CardMovie = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 0;
-  height: 10%;
-  padding-top: 2rem;
-  gap: 0.5rem;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 32px;
+  align-items: start;
+  color: transparent;
+  margin-top: 5rem;
 
-  @media (max-width: 768px) {
-    margin-top: 2rem;
-    height: 34vh;
-    gap: 0;
+  p {
+    display: flex;
+    margin-top: -3rem;
+  }
+
+  &:hover {
+    color: #000000;
   }
 
   img {
-    width: 13rem;
-    height: 19.5rem;
-    left: 112px;
-    border: 1px solid #e7e7e7;
+    width: 200px;
+    height: 264px;
     border-radius: 4px;
 
-    @media (max-width: 768px) {
-      width: 156px;
-      height: 232px;
-      border: 1px solid #e7e7e7;
-      border-radius: 4px;
+    &:hover {
+      -webkit-mask-image: linear-gradient(black, transparent);
+      mask-image: linear-gradient(black, transparent);
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
     }
   }
 
@@ -59,7 +57,6 @@ export const CardMovie = styled.div`
     width: 11rem;
     height: 24px;
     left: 112px;
-    top: 806px;
     font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
@@ -69,13 +66,12 @@ export const CardMovie = styled.div`
     align-items: center;
     justify-content: start;
     color: #000000;
+    margin-top: 1rem;
   }
 
   h4 {
     width: 11rem;
     height: 24px;
-    left: 320px;
-    top: 830px;
     font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
@@ -84,7 +80,23 @@ export const CardMovie = styled.div`
     display: flex;
     align-items: center;
     color: #646464;
-    margin-top: -0.5rem;
+  }
+
+  h6 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    color: transparent;
+    margin-top: -4rem;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      color: #000000;
+    }
   }
 `;
 
@@ -105,4 +117,85 @@ export const Selection = styled.div`
   padding-top: 3rem;
   padding-bottom: 3rem;
   cursor: pointer;
+`;
+export const Buttons = styled.div`
+  display: flex;
+  width: 82%;
+  height: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 5.25rem;
+  flex-direction: row;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+`;
+
+export const ButtonClicked = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  width: fit-content;
+  height: 40px;
+  background: #d18000;
+  border-radius: 4px;
+  border: none;
+  gap: 0.5rem;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #d18000;
+    border: 1px solid white;
+    width: 1.2rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  width: fit-content;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: none;
+
+  p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #323232;
+
+    &:hover {
+      color: #ffffff;
+      font-weight: 600;
+    }
+  }
+  &:hover {
+    background: #d18000;
+  }
 `;
