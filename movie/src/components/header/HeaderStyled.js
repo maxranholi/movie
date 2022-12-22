@@ -19,6 +19,8 @@ export const Title = styled.div`
   align-items: center;
   gap: 0.8rem;
   color: #ffffff;
+  cursor: pointer;
+  
 
   @media (max-width: 768px) {
     margin-left: 0;

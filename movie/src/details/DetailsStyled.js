@@ -54,8 +54,52 @@ export const MovieInformation = styled.div`
   margin-left: 2rem;
   margin-top: 2rem;
   gap: 1rem;
+
   @media (max-width: 768px) {
     width: 92%;
+  }
+`;
+
+export const Characters = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+export const CharacterNames = styled.div`
+  display: flex;
+  flex-direction: column;
+  line-height: 0;
+  margin-top: -1rem;
+
+  h6 {
+    width: 174px;
+    height: 24px;
+    left: 530px;
+    top: 484px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+   
+  }
+
+  p {
+    width: 174px;
+    height: 20px;
+    left: 736px;
+    top: 508px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    margin-top: -1rem;
   }
 `;
 export const TitleMovie = styled.div`
@@ -230,7 +274,6 @@ export const Recomendations = styled.div`
   margin-bottom: 32px;
   gap: 32px;
 
-
   &::-webkit-scrollbar {
     background-color: #dddddd;
     height: 0.8rem;
@@ -248,7 +291,6 @@ export const RecomendationsList = styled.div`
   gap: 1rem;
   padding-bottom: 1rem;
 
-
   p {
     display: flex;
   }
@@ -257,7 +299,6 @@ export const RecomendationsList = styled.div`
     color: #000000;
   }
 
-  
   h2 {
     width: 11rem;
     height: 24px;
@@ -286,7 +327,6 @@ export const RecomendationsList = styled.div`
     align-items: center;
     color: #646464;
   }
-
 `;
 
 export const Video = styled.div`

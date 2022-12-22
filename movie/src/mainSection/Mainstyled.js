@@ -159,6 +159,7 @@ export const ButtonClicked = styled.button`
   border-radius: 4px;
   border: none;
   gap: 0.5rem;
+  cursor: pointer;
 
   font-family: "Roboto";
   font-style: normal;
@@ -195,8 +196,9 @@ export const Button = styled.button`
   background: #ffffff;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 
-  p {
+  
     font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
@@ -208,7 +210,7 @@ export const Button = styled.button`
       color: #ffffff;
       font-weight: 600;
     }
-  }
+  
   &:hover {
     background: #d18000;
   }
