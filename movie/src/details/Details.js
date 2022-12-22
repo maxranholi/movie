@@ -16,6 +16,8 @@ import {
   ProgressBar,
   Progress,
   opts,
+  Characters,
+  CharacterNames,
 } from "./DetailsStyled";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
@@ -42,8 +44,8 @@ const Details = () => {
   const navigate = useNavigate();
 
   const goToDetails = (id) => {
-    detailsPage(navigate, id);
-    window.scrollTo(0, 0);
+    detailsPage(navigate, id)
+    window.scroll(0,0)
   };
 
   useEffect(() => {
@@ -65,8 +67,6 @@ const Details = () => {
       .then((res) => {
         setCast(res.data.cast);
         setCrew(res.data.crew);
-        console.log(res.data.crew)
-        
       });
   }, [id]);
 
@@ -116,7 +116,7 @@ const Details = () => {
         <img
           src={`${Imagepath}${recomendation.poster_path}`}
           alt="pôster do respectivo filme"
-          onClick={() => goToDetails(movie.id)}
+          onClick={() => goToDetails(recomendation.id)}
         />
         <h2>{recomendation.title}</h2>
         <h4>{brasilianDate}</h4>
@@ -140,33 +140,52 @@ const Details = () => {
   if (fetchTrailer.length > 0) {
     trailerKey = trailerKey[0].key;
   }
-
-
   //==============================================================================================
 
   //========================================================= Variáveis pegar equipe do filme
-  const fetchCrew =
+  const fetchDirector =
     crew &&
     crew.filter((crew) => {
-      return crew["known_for_department"] === "Directing" ?  <p>{crew.name}</p> : undefined;
+      return crew["known_for_department"] === "Directing" ? (
+        <p>{crew.name}</p>
+      ) : undefined;
     });
 
-    let director = fetchCrew
+  let director = fetchDirector;
 
-    if(fetchCrew.length > 0) {
-      director = director[0].name
-    }
+  if (fetchDirector.length > 0) {
+    director = director[0].name;
+  }
 
-    console.log(director)
+  const fetchWriting =
+    crew &&
+    crew.filter((crew) => {
+      return crew["department"] === "Writing" ? crew : undefined;
+    });
 
-  // const crewMap = crew.map((crew) => {
-  //   return <p>{crew.name}</p>;
-  // });
+  let writing = fetchWriting;
 
- 
+  if (fetchWriting.length > 0) {
+    writing = writing[0].name;
+  }
+
+  const charactersFilter =
+    cast &&
+    cast.filter((character, index) => {
+      return index < 2 ? character : undefined;
+    });
+
+  let character1 = charactersFilter;
+  let character2 = charactersFilter;
+
+  if (charactersFilter.length > 0) {
+    character1 = charactersFilter[0].name;
+    character2 = charactersFilter[1].name;
+  }
+
+  console.log(cast);
 
   //==============================================================================================
-
 
   //====================================================== Variáveis para formatar a hora do filme
   const runtimeToFixed = (movie.runtime / 60).toFixed(2);
@@ -192,7 +211,7 @@ const Details = () => {
         <ImgPoster src={`${Imagepath}${movie.poster_path}`}></ImgPoster>
         <MovieInformation>
           <TitleMovie>
-            {movie.title} ({releaseYear}) 
+            {movie.title} ({releaseYear})
           </TitleMovie>
           <Genres>
             {releaseDate} {gendersMap} {runTimeHour}h {runTimeMinutes}m
@@ -219,7 +238,12 @@ const Details = () => {
             <h6>Sinopse</h6>
             {movie.overview}
           </Overview>
-          Diretor: {director}
+          <Characters>
+            <CharacterNames><h6>characters:</h6><p>{character1}</p></CharacterNames>
+            <CharacterNames><h6>characters:</h6><p>{character2}</p></CharacterNames>
+            <CharacterNames><h6>Diretor:</h6><p>{director}</p></CharacterNames>
+            <CharacterNames><h6>Roteirista:</h6><p>{writing}</p></CharacterNames>
+          </Characters>
         </MovieInformation>
       </ContainerHero>
       <Cast>
