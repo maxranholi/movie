@@ -22,4 +22,4 @@ Projeto feito em React proposto pela Promobit para o consumo da API TMDB e com d
 <p>• 💻 Outros dispositivos ✔</p>
 
 <a href="https://imgur.com/3c99Opl"><img width="700px" src="https://i.imgur.com/3c99Opl.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/V7UVipv"><img height="600px" src="https://i.imgur.com/V7UVipv.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/V7UVipv"><img height="500px" src="https://i.imgur.com/V7UVipv.png" title="source: imgur.com" /></a>
