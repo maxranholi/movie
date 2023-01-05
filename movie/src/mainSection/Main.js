@@ -7,14 +7,13 @@ import {
   ContainerMain,
   Selection,
 } from "./Mainstyled";
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Imagepath, API_key } from "../constants/Url";
+import { Imagepath} from "../constants/Url";
 import { useNavigate } from "react-router-dom";
 import { detailsPage } from "../routes/Coordinator";
 import Header from "../components/header/Header";
 import { ContainerHero, Title } from "../heroSection.js/HeroSectionStyled";
-import { getMovieBygenre, getMovies } from "../services/requests";
+import { getMovieBygenre, getMovies } from "../services/requestsHome";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
@@ -34,7 +33,7 @@ const Main = () => {
     window.scrollTo(0, 0);
   };
 
-  useEffect(() => getMovies(setMovies), []);
+  useEffect(() => getMovies(setMovies, page), [page]);
 
   useEffect(() => getMovieBygenre(setGenre), []);
 
