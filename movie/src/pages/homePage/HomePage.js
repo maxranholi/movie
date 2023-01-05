@@ -6,7 +6,7 @@ import {
   Containercard,
   ContainerMain,
   Selection,
-} from "./Mainstyled";
+} from "./HomePageStyled";
 import React, { useState, useEffect } from "react";
 import { Imagepath} from "../constants/Url";
 import { useNavigate } from "react-router-dom";
