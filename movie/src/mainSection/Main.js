@@ -13,10 +13,8 @@ import { Imagepath, API_key } from "../constants/Url";
 import { useNavigate } from "react-router-dom";
 import { detailsPage } from "../routes/Coordinator";
 import Header from "../components/header/Header";
-import {
-  ContainerHero,
-  Title,
-} from "../heroSection.js/HeroSectionStyled";
+import { ContainerHero, Title } from "../heroSection.js/HeroSectionStyled";
+import { getMovieBygenre, getMovies } from "../services/requests";
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
@@ -36,25 +34,9 @@ const Main = () => {
     window.scrollTo(0, 0);
   };
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_key}&language=pt-br-US&page=${page}`
-      )
-      .then((res) => {
-        setMovies(res.data.results);
-      });
-  }, [page]);
+  useEffect(() => getMovies(setMovies), []);
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_key}&language=en-US`
-      )
-      .then((res) => {
-        setGenre(res.data.genres);
-      });
-  }, []);
+  useEffect(() => getMovieBygenre(setGenre), []);
 
   const genreMap = genre.map((genre) => {
     if (genre.id === filter) {
@@ -82,14 +64,14 @@ const Main = () => {
       .replace(/,/g, " ");
     if (filter === "") {
       return (
-        <CardMovie key={movie.id}>
+        <CardMovie className="showDetails" key={movie.id}>
           <img
             src={`${Imagepath}${movie.poster_path}`}
             alt="pôster do respectivo filme"
             onClick={() => goToDetails(movie.id)}
           />
           <p>{"Ver Detalhes"}</p>
-          <h2>{movie.title}</h2>         
+          <h2>{movie.title}</h2>
           <h4>{brasilianDate}</h4>
         </CardMovie>
       );
@@ -100,14 +82,15 @@ const Main = () => {
       filter === movie.genre_ids[3]
     ) {
       return (
-        <CardMovie key={movie.id}><p>detalhes</p>
+        <CardMovie className="showDetails" key={movie.id}>
+          <p>detalhes</p>
           <img
             src={`${Imagepath}${movie.poster_path}`}
             alt="pôster do respectivo filme"
             onClick={() => goToDetails(movie.id)}
           />
           <h2>{movie.title}</h2>
-          <h4>{brasilianDate}</h4>        
+          <h4>{brasilianDate}</h4>
         </CardMovie>
       );
     }
@@ -117,12 +100,10 @@ const Main = () => {
       <Header />
       <ContainerHero>
         <Title>
-          Milhões de filmes, séries e pessoas para descobrir. Explore já.        
+          Milhões de filmes, séries e pessoas para descobrir. Explore já.
         </Title>
         <h6>FILTRE POR:</h6>
-        <Buttons>
-        {genreMap}
-        </Buttons>       
+        <Buttons>{genreMap}</Buttons>
       </ContainerHero>
       <ContainerMain>
         <Containercard>{moviesMap}</Containercard>
