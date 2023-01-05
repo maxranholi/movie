@@ -49,17 +49,16 @@ const Details = () => {
   };
 
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_key}&language=en-US`
-      )
-      .then((res) => {
-        setMovie(res.data);
-        setGenres(res.data.genres);
-
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_key}&language=en-US`
+  //     )
+  //     .then((res) => {
+  //       setMovie(res.data);
+  //       setGenres(res.data.genres);
+  //     });
+  // }, [id]);
 
   useEffect(() => {
     axios
@@ -69,7 +68,6 @@ const Details = () => {
       .then((res) => {
         setCast(res.data.cast);
         setCrew(res.data.crew);
-        console.log(res.data)
       });
   }, [id]);
 
