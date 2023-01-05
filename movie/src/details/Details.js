@@ -48,6 +48,7 @@ const Details = () => {
     window.scroll(0,0)
   };
 
+
   useEffect(() => {
     axios
       .get(
@@ -56,6 +57,7 @@ const Details = () => {
       .then((res) => {
         setMovie(res.data);
         setGenres(res.data.genres);
+
       });
   }, [id]);
 
@@ -67,6 +69,7 @@ const Details = () => {
       .then((res) => {
         setCast(res.data.cast);
         setCrew(res.data.crew);
+        console.log(res.data)
       });
   }, [id]);
 
@@ -183,7 +186,7 @@ const Details = () => {
     character2 = charactersFilter[1].name;
   }
 
-  console.log(cast);
+
 
   //==============================================================================================
 

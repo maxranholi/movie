@@ -51,6 +51,7 @@ export const CardMovie = styled.div`
     width: 200px;
     height: 264px;
     border-radius: 4px;
+    transition: 1s;
 
     &:hover {
       -webkit-mask-image: linear-gradient(black, transparent);
@@ -63,8 +64,16 @@ export const CardMovie = styled.div`
     width: 100%;
     height: 220px;
   }
+ 
+  .showDetails{
+    -webkit-mask-image: linear-gradient(black, transparent);
+      mask-image: linear-gradient(black, transparent);
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
 
-    
+  }
+
   }
 
   h2 {
