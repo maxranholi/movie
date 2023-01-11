@@ -3,6 +3,7 @@
 <h2 align="center">Sobre</h2>
 <p align="justify">
 Projeto feito em React proposto pela Promobit para o consumo da API TMDB e com design já estabelecido no figma para cópia. 
+Um desafio que tive nesse projeto foi o de aprender a componentizar os arquivos de uma forma eu que cada pasta/arquivo estivesse responsável por alguma parte do projeto e que fosse possível voltar no futuro para poder reestruturar o que for preciso.
 </p>
 
 💡 <a href="https://github.com/Promobit/front-end-challenge">Requerimentos do Projeto</a>
